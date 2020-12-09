@@ -1,0 +1,87 @@
+\documentclass[10pt,a4paper,twocolumn]{article}
+%\documentclass[12pt,a4paper]{article}
+
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{commath}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{enumitem}[leftmargin=0pt]
+\usepackage{multicol}
+\usepackage{yfonts}
+\usepackage{verbatim}
+\usepackage{bm}
+\usepackage{float}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{paper_tube.bib}
+
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+\renewcommand{\vec}[1]{\bm{\mathrm{#1}}}
+
+\begin{document}
+
+\title{Paper Tube}
+\author{Aleksandar Ivanov}
+\date{}
+\maketitle
+
+\clearpage
+
+\section{Problem statement}
+
+Roll a long paper strip into a tight tube and put it vertically on a table. Why does it often unwind in jerks? What determines the period of the jerks?
+
+\section{Introduction}
+
+The phenomenon of a periodic process composed of a rest phase and a moving phase is well explained by the theory of stick and slip motion. The core of the effect lies in the difference between the coefficients of static and kinetic friction, namely that the static one is somewhat larger. 
+
+Another important part of the dynamics is the driving. A simple model of this driving would be taking the free end of the paper to be moving with a constant velocity, which can be observed to be approximately true. To improve on this model, we would have to take into account the internal stresses of the paper, which is a complicated feat for a tight radius since the winding leaves the paper permanently deformed.
+
+
+...
+
+\section{Theoretical description}
+
+\begin{figure}[H]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=1.2]{sketch.png}
+\caption{Setup of the model}
+\label{fig:sketch}
+\end{figure}
+
+For our simple model, for the sake of clarity, we will first look at the linear stick and slip case, which directly translates to the angular case.
+
+As shown in figure \ref{fig:sketch} we look at a mass $m$ pulled by a spring $k$, the end of which is moving with a constant velocity $u$. The coefficients of static and kinetic friction are given by $\mu_s$ and $\mu_k$, respectively. Writing down Newton's II law for the mass in a reference where the free end is stationary we get
+%
+\begin{align}
+\ddot{\delta}= -\omega_0^2 \delta - \mu_k g \,\mathrm{sgn}(\dot{\delta} - u),
+\end{align}
+%
+where $\omega_0^2 = k/m$ and $\delta$, the coordinate in that frame, is just the elongation.
+
+Whatever the initial conditions of the system are, once it dissipates enough and enters the stick phase it will need to reach a force of $\mu_s g$ in the spring to start moving again. This means that if we define the moment where motion starts once again as $t=0$, then the initial conditions are effectively
+%
+\begin{align}
+&\delta(0) = \frac{\mu_s g}{\omega_0^2}, &\dot{\delta}(0) = u.
+\end{align} 
+
+
+
+\cite{oregon}
+\cite{apho}
+\cite{Prior1719}
+\cite{CASTRO20032083}
+
+
+\printbibliography
+
+\end{document}
