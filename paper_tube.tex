@@ -17,6 +17,7 @@
 \usepackage{verbatim}
 \usepackage{bm}
 \usepackage{float}
+\usepackage{cleveref}
 
 \usepackage[backend=biber]{biblatex}
 \addbibresource{paper_tube.bib}
@@ -41,9 +42,10 @@ Roll a long paper strip into a tight tube and put it vertically on a table. Why 
 
 \section{Introduction}
 
-The phenomenon of a periodic process composed of a rest phase and a moving phase is well explained by the theory of stick and slip motion. The core of the effect lies in the difference between the coefficients of static and kinetic friction, namely that the static one is somewhat larger. 
+The phenomenon of a periodic process composed of a rest phase and a moving phase is well explained by the theory of stick and slip motion \cite{apho}. The core of the effect lies in the difference between the coefficients of static and kinetic friction, namely the fact that the static one is somewhat larger. 
 
-Another important part of the dynamics is the driving. A simple model of this driving would be taking the free end of the paper to be moving with a constant velocity, which can be observed to be approximately true. To improve on this model, we would have to take into account the internal stresses of the paper, which is a complicated feat for a tight radius since the winding leaves the paper permanently deformed.
+Another important part of the dynamics is the driving. A simple model of this driving would be taking the free end of the paper to be moving with a constant velocity, which can be observed to be approximately true. To improve on this model, we would have to take into account the internal stresses of the paper, which is a complicated feat for a tight radius since the winding leaves the paper permanently deformed \cite{CASTRO20032083}.
+
 
 
 ...
@@ -51,35 +53,98 @@ Another important part of the dynamics is the driving. A simple model of this dr
 \section{Theoretical description}
 
 \begin{figure}[H]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=1.2]{sketch.png}
-\caption{Setup of the model}
-\label{fig:sketch}
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[scale=1.2]{sketch.png}
+    \caption{Setup of the model}
+    \label{fig:sketch}
 \end{figure}
 
 For our simple model, for the sake of clarity, we will first look at the linear stick and slip case, which directly translates to the angular case.
 
-As shown in figure \ref{fig:sketch} we look at a mass $m$ pulled by a spring $k$, the end of which is moving with a constant velocity $u$. The coefficients of static and kinetic friction are given by $\mu_s$ and $\mu_k$, respectively. Writing down Newton's II law for the mass in a reference where the free end is stationary we get
+As shown in \cref{fig:sketch} we look at a mass $m$ pulled by a spring $k$, the end of which is moving with a constant velocity $u$. The coefficients of static and kinetic friction are given by $\mu_s$ and $\mu_k$, respectively. Writing down Newton's II law for the mass in a reference frame where the free end is stationary we get
 %
 \begin{align}
-\ddot{\delta}= -\omega_0^2 \delta - \mu_k g \,\mathrm{sgn}(\dot{\delta} - u),
+    \ddot{\delta}= -\omega_0^2 \delta - \mu_k g \,\mathrm{sgn}(\dot{\delta} - u),
 \end{align}
 %
-where $\omega_0^2 = k/m$ and $\delta$, the coordinate in that frame, is just the elongation.
+where $\omega_0^2 = k/m$ and $\delta$, the coordinate in that frame, is just the elongation. This equation governs the motion while the body is moving; in the stick phase we obviously just have $\ddot{\delta}=0, \dot{\delta} = 0$ which lasts until the force in the spring becomes bigger than $\mu_s m g$.
 
-Whatever the initial conditions of the system are, once it dissipates enough and enters the stick phase it will need to reach a force of $\mu_s g$ in the spring to start moving again. This means that if we define the moment where motion starts once again as $t=0$, then the initial conditions are effectively
+Whatever the initial conditions of the system are, once it dissipates enough energy and enters the stick phase it will need to reach a force of $\mu_s m g$ in the spring to start moving again. This means that if we define the moment where motion starts once again as $t=0$, then the initial conditions are effectively always given by
 %
 \begin{align}
-&\delta(0) = \frac{\mu_s g}{\omega_0^2}, &\dot{\delta}(0) = u.
-\end{align} 
+    &\delta(0) = \frac{\mu_s g}{\omega_0^2},& &\dot{\delta}(0) = u.&
+\end{align}
+
+While in the slipping phase, the condition $\dot{\delta} > u$ is always fulfilled. This makes the equation of motion become the equation of oscillations with a shifted center. So we see that the velocity can decrease, but when it reaches the critical value of $u$, we leave the slipping phase and don't have to abandon our sinusoidal solution. Mathematically, this is written as
+%
+\begin{align}\label{eq:slip}
+    \delta(t) = \frac{\mu_k g}{\omega_0^2} + \frac{u}{\omega_0} \sin(\omega_0 t) + \frac{(\mu_s - \mu_k) g}{\omega_0^2} \cos(\omega_0 t),
+\end{align}
+%
+where the region of validity is until $\dot{\delta}(0)$ decreases back down to $u$; we will call the time needed for this $T_1$. Calculating $T_1$ from the derivative of \cref{eq:slip} we get the value
+%
+\begin{align}
+    T_1 = \frac{\pi}{\omega_0} + \frac{2}{\omega_0} \arctan \left( \frac{u \omega_0}{(\mu_s - \mu_k) g} \right).
+\end{align}
+
+At this point the elongation of the spring is
+%
+\begin{align}\label{eq:elo_T1}
+    \delta(T_1) = \frac{(2\mu_k - \mu_s) g}{\omega_0^2},
+\end{align}
+%
+which will be an important fact in calculating the duration of the stick time $T_2$.
+
+In the reference frame of the moving end, during the stick phase, the body is simply moving with a constant speed $u$ meaning that we can get the time $T_2$ as the change in elongation divided by $u$. At the end of the stick phase we have an elongation large enough to overcome the static friction
+%
+\begin{align}
+    \delta(T_1 + T_2) = \frac{mu_s g}{\omega_0^2},
+\end{align}
+%
+which we combine with \cref{eq:elo_T1} and get the time as
+%
+\begin{align}
+    T_2 = \frac{2 (\mu_s - \mu_k) g}{u \omega_0^2}.
+\end{align}
+
+This completes the description of one period of the motion whence we get the length of that period as
+%
+\begin{align}
+    T &= T_1 + T_2 \notag\\
+    &= \frac{2 (\mu_s - \mu_k) g}{u \omega_0^2} + \frac{\pi}{\omega_0} + \frac{2}{\omega_0} \arctan \left( \frac{u \omega_0}{(\mu_s - \mu_k) g} \right)
+\end{align}
+
+Furthermore, we see that there's a dimensionless controlling parameter
+%
+\begin{align}
+    \alpha = \frac{u \omega_0}{(\mu_s - \mu_k) g}.
+\end{align}
+%
+In a lot of situations this parameter is small, $\alpha \ll 1$, which makes the stick period much larger than the slip period $T_2 \gg T_1$. This, in turn, is observed as a large time of being stationary and a very fast subsequent jerk.
+
+In our case the friction comes from two sources. One is the friction between the paper and the table and the second is the friction between the layers of the paper tube itself. These two components behave differently from each other since the friction depends on the normal force. In the case of the surface friction that normal force is the same all the time $N=mg$ as in our model. In the case of the layer friction the normal force changes with time, since the paper is unrolling. All we can hope for in that case is that the change is adiabatic enough for our model to still give us some information.
+
+When we translate to our rotational case, we change to the parameters
+%
+\begin{align}
+    u \rightarrow \Omega r,& &mg \rightarrow mg + N,&
+\end{align}
+%
+where $\Omega$ is the rotational velocity of the free end and $N$ is the normal force between the surfaces.
 
 
 
-\cite{oregon}
-\cite{apho}
-\cite{Prior1719}
-\cite{CASTRO20032083}
+
+
+
+
+
+
+
+
+\nocite{oregon}
+\nocite{Prior1719}
 
 
 \printbibliography
