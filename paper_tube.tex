@@ -128,14 +128,24 @@ In our case the friction comes from two sources. One is the friction between the
 When we translate to our rotational case, we change to the parameters
 %
 \begin{align}
-    u \rightarrow \Omega r,& &mg \rightarrow mg + N,&
+    u \rightarrow \Omega r,& &\mu m g \rightarrow \mu m g  + \mu^* N,&
 \end{align}
 %
-where $\Omega$ is the rotational velocity of the free end and $N$ is the normal force between the surfaces.
+where $\Omega$ is the rotational velocity of the free end, $N$ is the normal force between the layers, and $\mu$ and $\mu^*$ are the paper-surface and paper-paper coefficients of friction, respectively.
 
-
-
-
+The part of the rotational motion driven by the normal force is obviously an internal driving so energy losses due to the friction don't get replenished as in the simple linear model above. To try to take this into account we calculate the energy loss due to friction in our linear model. The energy loss per period is proportional to the full displacement after that period, which we can get from our model. To do this we transform to the reference frame that's fixed to the ground. The coordinate in that frame (up to an additive constant that we set to $0$) is given by
+%
+\begin{align}
+    x(t) = u t - \delta(t),
+\end{align} 
+%
+which makes the displacement over a period
+%
+\begin{align}
+    \Delta x = u T - \left( \delta(T) - \delta(0) \right),
+\end{align}
+%
+all of which we have already calculated.
 
 
 
